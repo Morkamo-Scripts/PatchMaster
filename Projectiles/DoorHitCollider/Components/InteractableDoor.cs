@@ -1,7 +1,7 @@
 using Exiled.API.Features.Doors;
 using UnityEngine;
 
-namespace PatchMaster.SCP2176.DoorHitCollider.Components
+namespace PatchMaster.Projectiles.DoorHitCollider.Components
 {
     public class InteractableDoor : MonoBehaviour
     {

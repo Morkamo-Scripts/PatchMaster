@@ -1,6 +1,6 @@
 ﻿using System;
 using Exiled.API.Features;
-using PatchMaster.SCP2176.DoorHitCollider;
+using PatchMaster.Projectiles.DoorHitCollider;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using evArgsServer = Exiled.Events.Handlers.Server;
@@ -19,31 +19,31 @@ namespace PatchMaster
         public override string Prefix => Name;
         public override Version Version => new Version(1, 0, 0);
 
-        public Collider2176DisableZone Collider2176DisableZone;
+        public ProjectileCollisionSafeZone ProjectileCollisionSafeZone;
 
         private void Init()
         {
             MonobehaviorGameObject = new GameObject("MonobehaviorGameObject");
             Object.DontDestroyOnLoad(MonobehaviorGameObject);
-            Collider2176DisableZone = MonobehaviorGameObject.AddComponent<Collider2176DisableZone>();
+            ProjectileCollisionSafeZone = MonobehaviorGameObject.AddComponent<ProjectileCollisionSafeZone>();
         }
 
         private void DeInit()
         {
-            Collider2176DisableZone = null;
+            ProjectileCollisionSafeZone = null;
             MonobehaviorGameObject = null;
         }
 
         private void RegisterEvents()
         {
-            evArgsServer.WaitingForPlayers += Collider2176DisableZone.OnWaitingForPlayers;
-            evArgs.ThrownProjectile += Collider2176DisableZone.OnThrownProjectile;
+            evArgsServer.WaitingForPlayers += ProjectileCollisionSafeZone.OnWaitingForPlayers;
+            evArgs.ThrownProjectile += ProjectileCollisionSafeZone.OnThrownProjectile;
         }
 
         private void UnRegisterEvents()
         {
-            evArgsServer.WaitingForPlayers -= Collider2176DisableZone.OnWaitingForPlayers;
-            evArgs.ThrownProjectile -= Collider2176DisableZone.OnThrownProjectile;
+            evArgsServer.WaitingForPlayers -= ProjectileCollisionSafeZone.OnWaitingForPlayers;
+            evArgs.ThrownProjectile -= ProjectileCollisionSafeZone.OnThrownProjectile;
         }
         
         public override void OnEnabled()

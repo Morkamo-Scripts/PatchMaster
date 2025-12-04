@@ -1,7 +1,7 @@
 ﻿using Exiled.API.Features.Pickups.Projectiles;
 using UnityEngine;
 
-namespace PatchMaster.SCP2176.DoorHitCollider.Components
+namespace PatchMaster.Projectiles.DoorHitCollider.Components
 {
     public class ProjectileItem : MonoBehaviour
     {

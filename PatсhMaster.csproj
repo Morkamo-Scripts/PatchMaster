@@ -35,9 +35,9 @@
         <Compile Include="Config.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="SCP2176\DoorHitCollider\Collider2176DisableZone.cs" />
-        <Compile Include="SCP2176\DoorHitCollider\Components\InteractableDoor.cs" />
-        <Compile Include="SCP2176\DoorHitCollider\Components\ProjectileItem.cs" />
+        <Compile Include="Projectiles\DoorHitCollider\ProjectileCollisionSafeZone.cs" />
+        <Compile Include="Projectiles\DoorHitCollider\Components\InteractableDoor.cs" />
+        <Compile Include="Projectiles\DoorHitCollider\Components\ProjectileItem.cs" />
     </ItemGroup>
     <ItemGroup>
         <Reference Include="0Harmony, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">

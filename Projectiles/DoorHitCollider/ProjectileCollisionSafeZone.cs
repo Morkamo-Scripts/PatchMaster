@@ -2,13 +2,13 @@ using System;
 using Exiled.API.Features.Doors;
 using Exiled.Events.EventArgs.Player;
 using MEC;
-using PatchMaster.SCP2176.DoorHitCollider.Components;
+using PatchMaster.Projectiles.DoorHitCollider.Components;
 using UnityEngine;
 using Log = Exiled.API.Features.Log;
 
-namespace PatchMaster.SCP2176.DoorHitCollider
+namespace PatchMaster.Projectiles.DoorHitCollider
 {
-    public class Collider2176DisableZone : MonoBehaviour
+    public class ProjectileCollisionSafeZone : MonoBehaviour
     {
         public void OnWaitingForPlayers()
         {
@@ -30,11 +30,9 @@ namespace PatchMaster.SCP2176.DoorHitCollider
         
         public void OnThrownProjectile(ThrownProjectileEventArgs ev)
         {
-            // Добавление нового обработчика для SCP2176 (Наследован от PatchMaster)
             ev.Projectile.GameObject
-                .AddComponent<Collider2176DisableZone>();
-
-            // Добавление компонента IProjectileItem (Наследован от PatchMaster)
+                .AddComponent<ProjectileCollisionSafeZone>();
+            
             var iProjectile = ev.Projectile.GameObject
                 .AddComponent<ProjectileItem>();
                 
@@ -52,7 +50,7 @@ namespace PatchMaster.SCP2176.DoorHitCollider
             if (iDoor == null || projectile == null)
                 return;
 
-            if (!isActive && iDoor.Door.IsOpen)
+            if (!isActive && (iDoor.Door.IsOpen || iDoor.Door.IsConsideredOpen))
             {
                 projectile.Projectile.Rigidbody.detectCollisions = false;
             }
