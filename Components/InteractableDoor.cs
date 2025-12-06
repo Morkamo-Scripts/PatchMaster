@@ -1,7 +1,7 @@
 using Exiled.API.Features.Doors;
 using UnityEngine;
 
-namespace PatchMaster.Projectiles.DoorHitCollider.Components
+namespace PatchMaster.Components
 {
     public class InteractableDoor : MonoBehaviour
     {
@@ -15,6 +15,7 @@ namespace PatchMaster.Projectiles.DoorHitCollider.Components
             {
                 // Колайдер для стабилизации пролёта SCP2176 через дверную рамму. (Фикс бага)
                 GameObject colliderObject = new GameObject("DoorTriggerZone");
+                colliderObject.layer = LayerMask.NameToLayer("TransparentFX");
                 colliderObject.transform.position = door.Position;
                 colliderObject.transform.localPosition += new Vector3(0, 1.5f, 0);
                 colliderObject.transform.localScale = new Vector3(1.6f, 2f, 2f);

@@ -32,12 +32,12 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Compile Include="Components\InteractableDoor.cs" />
+        <Compile Include="Components\ProjectileItem.cs" />
         <Compile Include="Config.cs" />
+        <Compile Include="Handlers\ProjectileCollisionSafeZone.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Projectiles\DoorHitCollider\ProjectileCollisionSafeZone.cs" />
-        <Compile Include="Projectiles\DoorHitCollider\Components\InteractableDoor.cs" />
-        <Compile Include="Projectiles\DoorHitCollider\Components\ProjectileItem.cs" />
     </ItemGroup>
     <ItemGroup>
         <Reference Include="0Harmony, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -54,10 +54,6 @@
         </Reference>
         <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
             <HintPath>packages\ExMod.Exiled.9.10.1\lib\net48\CommandSystem.Core.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="DarkAPI">
-            <HintPath>..\Libs\DarkAPI.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="Exiled.API, Version=9.10.1.0, Culture=neutral, processorArchitecture=Amd64">

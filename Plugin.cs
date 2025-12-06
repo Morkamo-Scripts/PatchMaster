@@ -1,11 +1,9 @@
 ﻿using System;
 using Exiled.API.Features;
-using PatchMaster.Projectiles.DoorHitCollider;
+using PatchMaster.Handlers;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using evArgsServer = Exiled.Events.Handlers.Server;
-using evArgsMap = Exiled.Events.Handlers.Map;
-using evArgs = Exiled.Events.Handlers.Player;
+using events = Exiled.Events.Handlers;
 
 namespace PatchMaster
 {
@@ -17,33 +15,34 @@ namespace PatchMaster
         public override string Author => "Morkamo";
         public override string Name => "PatchMaster";
         public override string Prefix => Name;
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 1, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 1, 0);
 
-        public ProjectileCollisionSafeZone ProjectileCollisionSafeZone;
+        private ProjectileCollisionSafeZone _projectileCollisionSafeZone;
 
         private void Init()
         {
             MonobehaviorGameObject = new GameObject("MonobehaviorGameObject");
             Object.DontDestroyOnLoad(MonobehaviorGameObject);
-            ProjectileCollisionSafeZone = MonobehaviorGameObject.AddComponent<ProjectileCollisionSafeZone>();
+            _projectileCollisionSafeZone = MonobehaviorGameObject.AddComponent<ProjectileCollisionSafeZone>();
         }
 
         private void DeInit()
         {
-            ProjectileCollisionSafeZone = null;
+            _projectileCollisionSafeZone = null;
             MonobehaviorGameObject = null;
         }
 
         private void RegisterEvents()
         {
-            evArgsServer.WaitingForPlayers += ProjectileCollisionSafeZone.OnWaitingForPlayers;
-            evArgs.ThrownProjectile += ProjectileCollisionSafeZone.OnThrownProjectile;
+            events.Server.WaitingForPlayers += _projectileCollisionSafeZone.OnWaitingForPlayers;
+            events.Player.ThrownProjectile += _projectileCollisionSafeZone.OnThrownProjectile;
         }
 
         private void UnRegisterEvents()
         {
-            evArgsServer.WaitingForPlayers -= ProjectileCollisionSafeZone.OnWaitingForPlayers;
-            evArgs.ThrownProjectile -= ProjectileCollisionSafeZone.OnThrownProjectile;
+            events.Server.WaitingForPlayers -= _projectileCollisionSafeZone.OnWaitingForPlayers;
+            events.Player.ThrownProjectile -= _projectileCollisionSafeZone.OnThrownProjectile;
         }
         
         public override void OnEnabled()

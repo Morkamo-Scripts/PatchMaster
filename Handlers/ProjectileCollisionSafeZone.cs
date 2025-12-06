@@ -2,11 +2,11 @@ using System;
 using Exiled.API.Features.Doors;
 using Exiled.Events.EventArgs.Player;
 using MEC;
-using PatchMaster.Projectiles.DoorHitCollider.Components;
+using PatchMaster.Components;
 using UnityEngine;
 using Log = Exiled.API.Features.Log;
 
-namespace PatchMaster.Projectiles.DoorHitCollider
+namespace PatchMaster.Handlers
 {
     public class ProjectileCollisionSafeZone : MonoBehaviour
     {
@@ -25,7 +25,7 @@ namespace PatchMaster.Projectiles.DoorHitCollider
                 }
             }
             
-            Log.SendRaw("[PatchMaster] " + "DoorHitCollider2176: Patch assigned", ConsoleColor.Green);
+            Log.SendRaw("[PatchMaster] " + "ProjectileCollisionSafeZone: Patch assigned", ConsoleColor.Green);
         }
         
         public void OnThrownProjectile(ThrownProjectileEventArgs ev)
