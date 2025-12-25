@@ -43,7 +43,6 @@ namespace PatchMaster
         {
             events.Server.WaitingForPlayers += _projectileCollisionSafeZone.OnWaitingForPlayers;
             events.Player.ThrownProjectile += _projectileCollisionSafeZone.OnThrownProjectile;
-            events.Player.UsingItemCompleted += _marshmallowHandler.OnUsingItemComplete;
             events.Player.ItemAdded += _marshmallowHandler.OnGetMarshmallowItem;
         }
 
@@ -51,7 +50,6 @@ namespace PatchMaster
         {
             events.Server.WaitingForPlayers -= _projectileCollisionSafeZone.OnWaitingForPlayers;
             events.Player.ThrownProjectile -= _projectileCollisionSafeZone.OnThrownProjectile;
-            events.Player.UsingItemCompleted -= _marshmallowHandler.OnUsingItemComplete;
             events.Player.ItemAdded -= _marshmallowHandler.OnGetMarshmallowItem;
         }
         

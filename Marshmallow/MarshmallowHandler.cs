@@ -17,17 +17,6 @@ namespace PatchMaster.Marshmallow
 {
     public class MarshmallowHandler
     {
-        public void OnUsingItemComplete(UsingItemCompletedEventArgs ev)
-        {
-            /*if (ev.Item.Type == ItemType.Scp021J && !Round.IsEnded)
-            {
-                if (ev.Player.Items.GetItemTypes().Contains(ItemType.SCP1344))
-                {
-                    ev.Player.DisableEffect(EffectType.SeveredEyes);
-                }
-            }*/
-        }
-
         public void OnGetMarshmallowItem(ItemAddedEventArgs ev)
         {
             if (ev.Item.Type == ItemType.MarshmallowItem && !Round.IsEnded)
