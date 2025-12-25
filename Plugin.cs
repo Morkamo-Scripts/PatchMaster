@@ -1,6 +1,7 @@
 ﻿using System;
 using Exiled.API.Features;
-using PatchMaster.Handlers;
+using PatchMaster.Marshmallow;
+using PatchMaster.Projectiles;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using events = Exiled.Events.Handlers;
@@ -19,30 +20,39 @@ namespace PatchMaster
         public override Version RequiredExiledVersion { get; } = new Version(9, 1, 0);
 
         private ProjectileCollisionSafeZone _projectileCollisionSafeZone;
+        private MarshmallowHandler _marshmallowHandler;
 
         private void Init()
         {
             MonobehaviorGameObject = new GameObject("MonobehaviorGameObject");
             Object.DontDestroyOnLoad(MonobehaviorGameObject);
             _projectileCollisionSafeZone = MonobehaviorGameObject.AddComponent<ProjectileCollisionSafeZone>();
+            
+            _marshmallowHandler = new MarshmallowHandler();
         }
 
         private void DeInit()
         {
             _projectileCollisionSafeZone = null;
             MonobehaviorGameObject = null;
+            
+            _marshmallowHandler = null;
         }
 
         private void RegisterEvents()
         {
             events.Server.WaitingForPlayers += _projectileCollisionSafeZone.OnWaitingForPlayers;
             events.Player.ThrownProjectile += _projectileCollisionSafeZone.OnThrownProjectile;
+            events.Player.UsingItemCompleted += _marshmallowHandler.OnUsingItemComplete;
+            events.Player.ItemAdded += _marshmallowHandler.OnGetMarshmallowItem;
         }
 
         private void UnRegisterEvents()
         {
             events.Server.WaitingForPlayers -= _projectileCollisionSafeZone.OnWaitingForPlayers;
             events.Player.ThrownProjectile -= _projectileCollisionSafeZone.OnThrownProjectile;
+            events.Player.UsingItemCompleted -= _marshmallowHandler.OnUsingItemComplete;
+            events.Player.ItemAdded -= _marshmallowHandler.OnGetMarshmallowItem;
         }
         
         public override void OnEnabled()

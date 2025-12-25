@@ -6,7 +6,7 @@ using PatchMaster.Components;
 using UnityEngine;
 using Log = Exiled.API.Features.Log;
 
-namespace PatchMaster.Handlers
+namespace PatchMaster.Projectiles
 {
     public class ProjectileCollisionSafeZone : MonoBehaviour
     {
